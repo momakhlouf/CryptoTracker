@@ -23,6 +23,8 @@
 		A8E5BD4D29E35F7300AE1A6A /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5BD4C29E35F7300AE1A6A /* EndPoints.swift */; };
 		A8E5BD5029E584DC00AE1A6A /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5BD4F29E584DC00AE1A6A /* NetworkingManager.swift */; };
 		A8E5BD5229E5882000AE1A6A /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5BD5129E5882000AE1A6A /* APIError.swift */; };
+		A8E5BD5729E6DF1300AE1A6A /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5BD5629E6DF1300AE1A6A /* SearchBarView.swift */; };
+		A8E5BD5929E6E5CB00AE1A6A /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5BD5829E6E5CB00AE1A6A /* UIApplication.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +45,8 @@
 		A8E5BD4C29E35F7300AE1A6A /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
 		A8E5BD4F29E584DC00AE1A6A /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		A8E5BD5129E5882000AE1A6A /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		A8E5BD5629E6DF1300AE1A6A /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		A8E5BD5829E6E5CB00AE1A6A /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 				A8E5BD3029E2CC1900AE1A6A /* Color.swift */,
 				A8E5BD4329E2E81000AE1A6A /* PreviewProvider.swift */,
 				A8E5BD4529E2EDF200AE1A6A /* Double.swift */,
+				A8E5BD5829E6E5CB00AE1A6A /* UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 		A8E5BD3829E2CF4200AE1A6A /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				A8E5BD5329E6DEEA00AE1A6A /* SearchBar */,
 				A8E5BD3929E2CF5400AE1A6A /* CircleButton */,
 			);
 			path = Components;
@@ -181,6 +187,14 @@
 				A8E5BD5129E5882000AE1A6A /* APIError.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A8E5BD5329E6DEEA00AE1A6A /* SearchBar */ = {
+			isa = PBXGroup;
+			children = (
+				A8E5BD5629E6DF1300AE1A6A /* SearchBarView.swift */,
+			);
+			path = SearchBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8E5BD5929E6E5CB00AE1A6A /* UIApplication.swift in Sources */,
 				A8E5BD4B29E35F0B00AE1A6A /* CoinServices.swift in Sources */,
 				A8E5BD3D29E2D5E500AE1A6A /* CircleButtonAnimateView.swift in Sources */,
 				A8E5BD3729E2CE4C00AE1A6A /* HomeView.swift in Sources */,
@@ -263,6 +278,7 @@
 				A8E5BD4429E2E81000AE1A6A /* PreviewProvider.swift in Sources */,
 				A8E5BD5029E584DC00AE1A6A /* NetworkingManager.swift in Sources */,
 				A8E5BD4229E2E7BD00AE1A6A /* CoinRowView.swift in Sources */,
+				A8E5BD5729E6DF1300AE1A6A /* SearchBarView.swift in Sources */,
 				A8E5BD4629E2EDF200AE1A6A /* Double.swift in Sources */,
 				A8E5BD4D29E35F7300AE1A6A /* EndPoints.swift in Sources */,
 				A8E5BD4029E2DD9600AE1A6A /* CoinModel.swift in Sources */,
