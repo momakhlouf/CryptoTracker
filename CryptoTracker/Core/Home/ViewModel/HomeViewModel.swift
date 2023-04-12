@@ -18,16 +18,40 @@ class HomeViewModel :ObservableObject{
     var cancellables = Set<AnyCancellable>()
 
     init() {
-       getData()
+       addSubscribers()
     }
     
-    func getData(){
-        service.$coins
+    func addSubscribers(){
+//        service.$coins
+//            .sink { [weak self] returnedCoins in
+//            self?.coins = returnedCoins
+//        }
+//            .store(in: &cancellables)
+        
+        $searchText
+            .combineLatest(service.$coins)
+              // -important-  when user search and write fast, this will hit the api every char , then we will delay it here by debounce.
+            .debounce(for: .seconds(0.5) , scheduler: DispatchQueue.main)
+            .map{(text, startingCoins ) -> [CoinModel] in
+                guard !text.isEmpty else {
+                     return startingCoins
+                }
+                
+               return startingCoins.filter { coin  in
+                    return coin.name.lowercased().contains(text.lowercased()) ||
+                           coin.symbol.lowercased().contains(text.lowercased()) ||
+                           coin.id.lowercased().contains(text.lowercased())
+                    
+                  }
+             }
             .sink { [weak self] returnedCoins in
-            self?.coins = returnedCoins
-        }
+                self?.coins = returnedCoins
+            }
             .store(in: &cancellables)
+                
+            
+        
     }
-    
-    
+           
 }
+
