@@ -20,6 +20,8 @@ class DeveloperPreview{
     private init(){}
     
     
+    let state = StatisticsModel(title: "Market Cap", value: "$17.5Bn")
+    let state1 = StatisticsModel(title: "Total Volume", value: "$17.5Bn" , percentage: 23.4)
     let homeVM = HomeViewModel()
     
     

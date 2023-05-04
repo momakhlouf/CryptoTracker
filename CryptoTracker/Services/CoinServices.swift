@@ -11,6 +11,7 @@ import Combine
 class CoinServices {
     @Published var coins : [CoinModel] = []
     var cancellables = Set<AnyCancellable>()
+    
     init(){
       getCoins()
     }
@@ -24,8 +25,8 @@ class CoinServices {
                 NetworkingManager.handleCompletion(completion: completion)
             } receiveValue: { [weak self] returnedCoins in
                 self?.coins  = returnedCoins
+                print("sss\(returnedCoins)")
             }
             .store(in: &cancellables)
-
     }
 }

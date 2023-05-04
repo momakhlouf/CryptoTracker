@@ -17,8 +17,8 @@ struct HomeView: View {
             VStack{
                 homeHeader
                 
+                HomeStatesView(showPortfolio: $showProfile)
                 SearchBarView(searchText: $vm.searchText)
-                
                 columnTitles
                 
                 if !showProfile {

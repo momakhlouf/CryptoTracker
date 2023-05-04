@@ -30,7 +30,6 @@ struct SearchBarView: View {
                     .foregroundColor(Color.theme.secondaryText)
                     .opacity(searchText.isEmpty ? 0.0 : 1.0)
             }
-
         }
         .font(.headline)
         .padding()
