@@ -25,7 +25,6 @@ class CoinServices {
                 NetworkingManager.handleCompletion(completion: completion)
             } receiveValue: { [weak self] returnedCoins in
                 self?.coins  = returnedCoins
-                print("sss\(returnedCoins)")
             }
             .store(in: &cancellables)
     }
