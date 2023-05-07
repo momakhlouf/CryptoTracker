@@ -11,6 +11,7 @@ struct HomeView: View {
     @EnvironmentObject private var vm : HomeViewModel
     @State private var showProfile : Bool = false //Animate right
     @State private var showProfileSheet : Bool = false //show sheet
+   
 
     var body: some View {
         ZStack{
@@ -31,10 +32,16 @@ struct HomeView: View {
                 if !showProfile {
                     allCoinsList
                         .transition(.move(edge: .leading))
+                        .refreshable {
+                            vm.refreshData()
+                            print(vm.coins.first?.currentPrice ?? 0)
+                            print("refresh")
+                        }
                 }
                 if showProfile{
                     portfolioCoinsList
                         .transition(.move(edge: .trailing))
+                       
                 }
                 Spacer(minLength: 0)
             }
