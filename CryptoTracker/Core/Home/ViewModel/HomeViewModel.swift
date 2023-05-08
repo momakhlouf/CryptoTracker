@@ -14,11 +14,17 @@ class HomeViewModel :ObservableObject{
     @Published var coins : [CoinModel] = []
     @Published var portfolioCoins : [CoinModel] = []
     @Published var searchText : String = ""
-    
+    @Published var sortOption : SortOption = .holdings
     private let coinService   = CoinServices()
     private let marketService = MarketServices()
     private let portfolioDataService = PortfolioDataService()
     var cancellables = Set<AnyCancellable>()
+    
+    
+    
+    enum SortOption{
+        case rank , reversedRank , holdings , reversedHoldings , price , priceReversed
+    }
     
     init() {
         addSubscribers()
@@ -33,10 +39,10 @@ class HomeViewModel :ObservableObject{
         //            .store(in: &cancellables)
         
         $searchText
-            .combineLatest(coinService.$coins)
+            .combineLatest(coinService.$coins , $sortOption)
         // -important-  when user search and write fast, this will hit the api every char , then we will delay it here by debounce.
             .debounce(for: .seconds(0.5) , scheduler: DispatchQueue.main)
-            .map(filterCoins)
+            .map(filterAndSortCoins)
             .sink { [weak self] returnedCoins in
                 self?.coins = returnedCoins
             }
@@ -73,7 +79,11 @@ class HomeViewModel :ObservableObject{
     }
     
     
-    
+    private func filterAndSortCoins(text : String , coins : [CoinModel] , sort : SortOption) -> [CoinModel]{
+        var filteredCoins = filterCoins(text: text, coins: coins)
+         sortCoins(sort: sort, coins: &filteredCoins)
+        return filteredCoins
+    }
     private func filterCoins(text : String , coins : [CoinModel]) -> [CoinModel]{
         guard !text.isEmpty else {
             return coins
@@ -84,6 +94,20 @@ class HomeViewModel :ObservableObject{
             coin.symbol.lowercased().contains(text.lowercased()) ||
             coin.id.lowercased().contains(text.lowercased())
             
+        }
+    }
+                // inout instead of return function - -> [coinModel]
+    private func sortCoins(sort : SortOption , coins : inout [CoinModel]){
+        
+        switch sort {
+        case .rank , .holdings:
+             coins.sort(by: {$0.rank < $1.rank})
+        case .reversedRank , .reversedHoldings:
+             coins.sort(by: {$0.rank > $1.rank})
+        case .price:
+             coins.sort(by: {$0.currentPrice > $1.currentPrice})
+        case .priceReversed:
+             coins.sort(by: {$0.currentPrice < $1.currentPrice})
         }
     }
     

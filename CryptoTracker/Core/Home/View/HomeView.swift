@@ -92,13 +92,34 @@ extension HomeView{
     
     private var columnTitles : some View {
         HStack{
-            Text("Coin")
+            HStack{
+                Text("Coin")
+                Image(systemName: "chevron.down")
+                    .opacity(vm.sortOption == .rank || vm.sortOption == .reversedRank ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180))
+            }
+            .onTapGesture {
+                withAnimation(.default){
+                    vm.sortOption = vm.sortOption == .rank ? .reversedRank : .rank
+                }
+            }
+            
             Spacer()
             if showProfile {
                 Text("Holdings")
             }
-            Text("Price")
-                .frame(width: UIScreen.main.bounds.width / 3.5 , alignment: .trailing)
+            HStack{
+                Text("price")
+                Image(systemName: "chevron.down")
+                    .opacity(vm.sortOption == .price || vm.sortOption == .priceReversed ? 1.0 : 0.0)
+                    .rotationEffect(Angle(degrees: vm.sortOption == .price ? 0 : 180))
+            }
+            .frame(width: UIScreen.main.bounds.width / 3.5 , alignment: .trailing)
+            .onTapGesture {
+                withAnimation(.default){
+                    vm.sortOption = vm.sortOption == .price ? .priceReversed : .price
+                }
+            }
         }
         .font(.caption)
         .foregroundColor(Color.theme.secondaryText)
