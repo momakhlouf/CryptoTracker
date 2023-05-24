@@ -22,6 +22,7 @@ struct DetailsLoadingView: View {
 
 struct DetailsView: View {
     @StateObject private var vm : DetailsViewModel
+    @State var showAllDescription : Bool = false
     private let columns : [GridItem] = [GridItem(.flexible()) , GridItem(.flexible())]
     
     init(coin: CoinModel) {
@@ -30,18 +31,23 @@ struct DetailsView: View {
     var body: some View {
         ScrollView{
             VStack{
-                Text("")
-                    .frame(height: 150)
-                
-                overViewTitle
-                Divider()
-                overViewGrid
-                additionalTitle
-                Divider()
-                additionalGrid
+                ChartView(coin: vm.coin)
+                    .padding(.vertical)
+
+                VStack(spacing: 20){
+                    overViewTitle
+                    Divider()
+                    coinDescription
+                    overViewGrid
+                    additionalTitle
+                    Divider()
+                    additionalGrid
+                    links
+                }
+                .padding()
             }
-            .padding()
         }
+        .scrollIndicators(.hidden)
         .navigationTitle(vm.coin.name)
         .toolbar{
             ToolbarItem(placement: .navigationBarTrailing) {
@@ -68,14 +74,14 @@ extension DetailsView {
                 .font(.headline)
                 .foregroundColor(Color.theme.secondaryText)
             
-            AsyncImage(url: URL(string: vm.coin.image)) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 25, height: 25)
-            } placeholder: {
-                ProgressView()
-            }
+//            AsyncImage(url: URL(string: vm.coin.image)) { image in
+//                image
+//                    .resizable()
+//                    .scaledToFit()
+//                    .frame(width: 25, height: 25)
+//            } placeholder: {
+//                ProgressView()
+//            }
         }
     }
     
@@ -85,6 +91,31 @@ extension DetailsView {
             .bold()
             .foregroundColor(.theme.accent)
             .frame(maxWidth: .infinity , alignment: .leading)
+    }
+    
+    private var coinDescription : some View {
+        ZStack{
+            if let description = vm.coinDescription , !description.isEmpty{
+                VStack(alignment: .leading){
+                    Text(vm.coinDescription?.removingHTMLOccurrences ?? "")
+                        .lineLimit(showAllDescription ? nil : 3)
+                        .font(.callout)
+                        .foregroundColor(.theme.secondaryText)
+                    Button{
+                        withAnimation(.easeInOut) {
+                            showAllDescription.toggle()
+                        }
+                    } label: {
+                        Text(showAllDescription ? "Less.." : "Read more..")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(.vertical , 4)
+                            .foregroundColor(.blue)
+                    }
+                }
+                .frame(maxWidth: .infinity , alignment: .leading)
+            }
+        }
     }
     
     private var additionalTitle : some View {
@@ -111,6 +142,22 @@ extension DetailsView {
             }
         }
         
+    }
+    
+    private var links : some View {
+        VStack(alignment: .leading, spacing: 10){
+            if let websiteUrl = vm.websiteUrl ,
+               let url = URL(string: websiteUrl) {
+                Link("Website", destination: url)
+            }
+            if let redditUrl = vm.redditUrl ,
+               let url = URL(string: redditUrl) {
+                Link("Reddit", destination: url)
+            }
+        }
+        .tint(.blue)
+        .frame(maxWidth: .infinity , alignment: .leading)
+        .font(.headline)
     }
     
 }

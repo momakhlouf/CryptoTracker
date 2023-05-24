@@ -15,6 +15,10 @@ class DetailsViewModel : ObservableObject{
     
     @Published var overViewStatistics : [StatisticsModel] = []
     @Published var additionalStatistics : [StatisticsModel] = []
+    @Published var coinDescription : String? = nil
+    @Published var websiteUrl : String? = nil
+    @Published var redditUrl : String? = nil
+
 
 
     init(coin : CoinModel) {
@@ -27,12 +31,20 @@ class DetailsViewModel : ObservableObject{
         coinDetailsService.$coinDetails
             .combineLatest($coin)
             .map(mapToStat)
-            .sink { returnedDetails in
-                self.overViewStatistics = returnedDetails.overView
-                self.additionalStatistics = returnedDetails.additional
+            .sink { [weak self] returnedDetails in
+                self?.overViewStatistics = returnedDetails.overView
+                self?.additionalStatistics = returnedDetails.additional
             }
             .store(in: &cancellables)
         
+        coinDetailsService.$coinDetails
+            .sink { [weak self] returnedData in
+                self?.coinDescription = returnedData?.readableDescription
+                self?.websiteUrl = returnedData?.links?.homepage?.first
+                self?.redditUrl = returnedData?.links?.subredditURL
+            }
+            .store(in: &cancellables)
+
     }
     
     
