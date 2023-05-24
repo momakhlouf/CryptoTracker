@@ -18,11 +18,14 @@ struct CoinRowView: View {
             if showHoldingColumn {
                 centerColumn
             }
-            
             rightColumn
-         
         }
         .font(.subheadline)
+        .background(
+            // this is to make the row clickable.
+            Color.theme.background.opacity(0.001)
+        )
+       // .frame(height: 40)
        // .padding()
     }
 }
