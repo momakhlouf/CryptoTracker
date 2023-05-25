@@ -20,6 +20,7 @@
 		A8B0FDE42A03EDE800350AF3 /* CoinLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0FDE32A03EDE800350AF3 /* CoinLogoView.swift */; };
 		A8B0FDE72A06811D00350AF3 /* portfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A8B0FDE52A06811D00350AF3 /* portfolioContainer.xcdatamodeld */; };
 		A8B0FDE92A06848A00350AF3 /* PortfolioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8B0FDE82A06848A00350AF3 /* PortfolioDataService.swift */; };
+		A8CBE1C12A1F746D003C91CE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CBE1C02A1F746D003C91CE /* SettingsView.swift */; };
 		A8E5BD2029E2C96600AE1A6A /* CryptoTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8E5BD1F29E2C96600AE1A6A /* CryptoTrackerApp.swift */; };
 		A8E5BD2729E2C96800AE1A6A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8E5BD2629E2C96800AE1A6A /* Preview Assets.xcassets */; };
 		A8E5BD2E29E2CAD300AE1A6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8E5BD2D29E2CAD300AE1A6A /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		A8B0FDE32A03EDE800350AF3 /* CoinLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinLogoView.swift; sourceTree = "<group>"; };
 		A8B0FDE62A06811D00350AF3 /* portfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = portfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		A8B0FDE82A06848A00350AF3 /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
+		A8CBE1C02A1F746D003C91CE /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A8E5BD1C29E2C96600AE1A6A /* CryptoTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8E5BD1F29E2C96600AE1A6A /* CryptoTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTrackerApp.swift; sourceTree = "<group>"; };
 		A8E5BD2629E2C96800AE1A6A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -118,6 +120,22 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		A8CBE1BE2A1F743C003C91CE /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A8CBE1BF2A1F7452003C91CE /* View */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		A8CBE1BF2A1F7452003C91CE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A8CBE1C02A1F746D003C91CE /* SettingsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A8E5BD1329E2C96600AE1A6A = {
 			isa = PBXGroup;
 			children = (
@@ -143,7 +161,6 @@
 				A8E5BD4929E35EC200AE1A6A /* Services */,
 				A8E5BD3E29E2DD7800AE1A6A /* Models */,
 				A8E5BD3229E2CDFB00AE1A6A /* Core */,
-				A8333CA52A1CBBBA00D871FC /* Details */,
 				A8E5BD2D29E2CAD300AE1A6A /* Assets.xcassets */,
 				A8E5BD2529E2C96800AE1A6A /* Preview Content */,
 			);
@@ -173,8 +190,10 @@
 		A8E5BD3229E2CDFB00AE1A6A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				A8CBE1BE2A1F743C003C91CE /* Settings */,
 				A8E5BD3829E2CF4200AE1A6A /* Components */,
 				A8E5BD3329E2CE1700AE1A6A /* Home */,
+				A8333CA52A1CBBBA00D871FC /* Details */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -368,6 +387,7 @@
 				A81F6B4D2A1D63F600A57D73 /* DetailsViewModel.swift in Sources */,
 				A8E5BD4429E2E81000AE1A6A /* PreviewProvider.swift in Sources */,
 				A8E5BD5029E584DC00AE1A6A /* NetworkingManager.swift in Sources */,
+				A8CBE1C12A1F746D003C91CE /* SettingsView.swift in Sources */,
 				A8E5BD4229E2E7BD00AE1A6A /* CoinRowView.swift in Sources */,
 				A8B0FDE72A06811D00350AF3 /* portfolioContainer.xcdatamodeld in Sources */,
 				A8E5BD5729E6DF1300AE1A6A /* SearchBarView.swift in Sources */,
