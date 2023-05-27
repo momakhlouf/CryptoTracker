@@ -37,12 +37,31 @@ struct HomeView: View {
                         .transition(.move(edge: .leading))
                         .refreshable {
                             vm.refreshData()
-                            print(vm.coins.first?.currentPrice ?? 0)
-                            print("refresh")
                         }
                 }
                 if showProfile{
-                    portfolioCoinsList
+                    ZStack{
+                        if vm.portfolioCoins.isEmpty && vm.searchText.isEmpty {
+                            VStack{
+                                Image(systemName: "pencil.slash")
+                                    .resizable()
+                                    .frame(width: 60 , height: 60)
+                                    .foregroundColor(.theme.accent)
+                                    .padding(.vertical , 10)
+
+                                Text("You haven't added any coins to your portfolio yet. Click the + button to get started.")
+                                    .font(.callout)
+                                    .foregroundColor(.theme.accent)
+                                    .fontWeight(.medium)
+                                    .multilineTextAlignment(.center)
+                                   
+                            }
+                            .padding(50)
+                        }else{
+                            portfolioCoinsList
+
+                        }
+                    }
                         .transition(.move(edge: .trailing))
                        
                 }
@@ -147,6 +166,7 @@ extension HomeView{
                         .onTapGesture {
                             segue(coin: coin)
                         }
+                        .listRowBackground(Color.clear)
            }
         }
         .listStyle(.plain)
@@ -160,6 +180,8 @@ extension HomeView{
                     .onTapGesture {
                         segue(coin: coin)
                 }
+                    .listRowBackground(Color.clear)
+
             }
         }
                     .listStyle(.plain)

@@ -47,6 +47,7 @@ struct DetailsView: View {
                 .padding()
             }
         }
+        .background(Color.theme.background)
         .scrollIndicators(.hidden)
         .navigationTitle(vm.coin.name)
         .toolbar{
@@ -74,6 +75,7 @@ extension DetailsView {
                 .font(.headline)
                 .foregroundColor(Color.theme.secondaryText)
             
+            CoinImageView(coin: vm.coin)
 //            AsyncImage(url: URL(string: vm.coin.image)) { image in
 //                image
 //                    .resizable()

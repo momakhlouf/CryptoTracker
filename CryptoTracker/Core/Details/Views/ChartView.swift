@@ -67,6 +67,8 @@ extension ChartView {
             .trim(from: 0 , to: lineTrimTo)
             .stroke( chartColor ,style: StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
             .shadow(color: chartColor, radius: 10, x: 0.0, y: 20)
+            .shadow(color: chartColor.opacity(0.5), radius: 10, x: 0.0, y: 20)
+
         }
     }
     

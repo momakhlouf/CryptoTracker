@@ -21,6 +21,7 @@ class MarketServices {
         guard let url = URL(string: "https://api.coingecko.com/api/v3/global") else {return}
          NetworkingManager.download(url: url)
             .decode(type: GlobalData.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 NetworkingManager.handleCompletion(completion: completion)
             } receiveValue: { returnedData in

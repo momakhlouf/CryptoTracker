@@ -21,6 +21,7 @@ class CoinServices {
         else { return }
              NetworkingManager.download(url: url)
             .decode(type: [CoinModel].self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 NetworkingManager.handleCompletion(completion: completion)
             } receiveValue: { [weak self] returnedCoins in

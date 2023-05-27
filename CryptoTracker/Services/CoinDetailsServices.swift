@@ -22,11 +22,11 @@ class CoinDetailsServices{
         else { return }
              NetworkingManager.download(url: url)
             .decode(type: CoinDetailsModel.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .sink { completion in
                 NetworkingManager.handleCompletion(completion: completion)
             } receiveValue: { [weak self] returnedCoinDetails in
                 self?.coinDetails  = returnedCoinDetails
-                print(self?.coinDetails)
             }
             .store(in: &cancellables)
     }

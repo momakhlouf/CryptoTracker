@@ -9,16 +9,20 @@ import SwiftUI
 
 struct SettingsView: View {
     
- 
     var body: some View {
         NavigationStack{
-            List{
-              aboutAppSection
-                                
-                  contactsSection
-                coinGeckoSection
-
-              
+            ZStack{
+                Color.theme.background
+                    .ignoresSafeArea()
+                
+                List{
+                    aboutAppSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    contactsSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                    coinGeckoSection
+                        .listRowBackground(Color.theme.background.opacity(0.5))
+                }
             }
             .listStyle(.grouped)
             .navigationTitle("Settings")
@@ -27,6 +31,7 @@ struct SettingsView: View {
                     CancelButton()
                 }
             }
+
         }
     }
 }
@@ -43,16 +48,16 @@ extension SettingsView {
     
     private var aboutAppSection : some View {
         Section(header: Text("About")){
-                HStack{
-                    Image("logo")
-                        .resizable()
-                        .frame(width: 100 , height: 100)
-                        .clipShape(RoundedRectangle(cornerRadius: 20))
-                    Text("this app helps users monitor and manage their cryptocurrency investments.It provides real-time updates on prices, market trends, and provides users a personalized portfolios.")
-                        .font(.callout)
-                        .fontWeight(.medium)
-                        .foregroundColor(Color.theme.secondaryText)
-                }
+            HStack{
+                Image("logo")
+                    .resizable()
+                    .frame(width: 100 , height: 100)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                Text("this app helps users monitor and manage their cryptocurrency investments.It provides real-time updates on prices, market trends, and provides users a personalized portfolios.")
+                    .font(.callout)
+                    .fontWeight(.medium)
+                    .foregroundColor(Color.theme.secondaryText)
+            }
         }
     }
     private var contactsSection : some View {
@@ -62,6 +67,7 @@ extension SettingsView {
                     Image(systemName: "person.circle.fill")
                         .resizable()
                         .frame(width: 70 , height: 70)
+                    
                     VStack(alignment: .leading , spacing: 15){
                         Text("Mohamed Makhlouf")
                         Text("iOS Developer")
@@ -93,8 +99,9 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 30 , height: 30)
                     .foregroundColor(.theme.accent)
+                  
                 
-                Link( "Call me " ,destination: URL(string: Contacts.phone)!)
+                Link( "Mobile Phone " ,destination: URL(string: Contacts.phone)!)
                     .font(.headline)
                     .foregroundColor(.blue)
             }
