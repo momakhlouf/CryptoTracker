@@ -21,9 +21,9 @@ struct HomeStatesView: View {
         }
         .frame(width: UIScreen.main.bounds.width , alignment: showPortfolio ? .trailing : .leading)
         
-        if showPortfolio {
-            
-        }
+//        if showPortfolio {
+//
+//        }
     }
 }
 

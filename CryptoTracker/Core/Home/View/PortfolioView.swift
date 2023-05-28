@@ -52,16 +52,18 @@ struct PortfolioView_Previews: PreviewProvider {
 
 extension PortfolioView {
     private var coinListView : some View {
-        
+     //   VStack{
         ScrollView(.horizontal , showsIndicators: false){
             LazyHStack {
-                ForEach( vm.searchText.isEmpty ? vm.portfolioCoins : vm.coins) { coin in
+                // vm.searchText.isEmpty ?
+                // vm.portfolioCoins.isEmpty ? vm.coins : vm.portfolioCoins
+                ForEach(vm.portfolioCoins.isEmpty ? vm.coins : vm.portfolioCoins ) { coin in
                     CoinLogoView(coin: coin)
                         .frame(width: 75)
                         .padding(4)
                         .onTapGesture {
                             withAnimation(.easeIn){
-                             //   selectedCoin = coin
+                                //   selectedCoin = coin
                                 updateSelectedCoinAmount(coin: coin)
                             }
                         }
@@ -74,6 +76,37 @@ extension PortfolioView {
             .padding(.leading)
             
         }
+//            VStack{
+//                if !vm.portfolioCoins.isEmpty {
+//                    Divider()
+//                    Text("My coins")
+//                        .foregroundColor(.theme.secondaryText)
+//                        .font(.caption)
+//                    ScrollView(.horizontal , showsIndicators: false){
+//                        LazyHStack {
+//                            // vm.searchText.isEmpty ?
+//                            ForEach( vm.portfolioCoins) { coin in
+//                                CoinLogoView(coin: coin)
+//                                    .frame(width: 75)
+//                                    .padding(4)
+//                                    .onTapGesture {
+//                                        withAnimation(.easeIn){
+//                                            //   selectedCoin = coin
+//                                            updateSelectedCoinAmount(coin: coin)
+//                                        }
+//                                    }
+//                                    .background(
+//                                        RoundedRectangle(cornerRadius: 10)
+//                                            .stroke(selectedCoin?.id == coin.id ? Color.theme.green : Color.clear , lineWidth: 1)
+//                                    )}
+//                        }
+//                        .padding(.vertical , 4)
+//                        .padding(.leading)
+//
+//                    }
+//                }
+//            }
+    //}
     }
     
     private var portfolioAmount : some View {

@@ -53,7 +53,7 @@ extension SettingsView {
                     .resizable()
                     .frame(width: 100 , height: 100)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-                Text("this app helps users monitor and manage their cryptocurrency investments.It provides real-time updates on prices, market trends, and provides users a personalized portfolios.")
+                Text("This app helps users monitor and manage their cryptocurrency investments.It provides real-time updates on prices, market trends, and provides users a personalized portfolios.")
                     .font(.callout)
                     .fontWeight(.medium)
                     .foregroundColor(Color.theme.secondaryText)

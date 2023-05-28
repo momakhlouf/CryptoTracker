@@ -17,6 +17,8 @@ struct StatisticsView: View {
             Text(stat.value)
                 .font(.headline)
                 .foregroundColor(Color.theme.accent)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
             HStack{
                 Image(systemName: "triangle.fill")
                     .font(.caption2)
